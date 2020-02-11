@@ -3,5 +3,6 @@
 *.MAP
 *.OBJ
 *.OVL
+*.TR
 .DS_Store
 TDCONFIG.TD
