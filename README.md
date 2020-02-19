@@ -1,6 +1,6 @@
 # assembly
 
-## [Go to the Java page!](/rootatkali/JavaBasics)
+## [Go to the Java page!](https://github.com/rootatkali/JavaBasics)
 
  Assembly repo for Meir class
  
