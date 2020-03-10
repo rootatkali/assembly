@@ -1,9 +1,11 @@
+# Base File For Assembly Programming
 ```assembly
 IDEAL
 MODEL small
 STACK 100h
 DATASEG
 ; Vars here
+
 
 CODESEG
 ; Procs here
@@ -19,4 +21,5 @@ exit:
 mov ax,4C00h
 int 21h
 END start
+
 ```
