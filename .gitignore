@@ -6,3 +6,6 @@
 *.TR
 .DS_Store
 TDCONFIG.TD
+
+# MOODLE TASKS
+moodle/
