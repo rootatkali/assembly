@@ -10,3 +10,6 @@ TDCONFIG.TD
 # MOODLE TASKS
 moodle/
 !moodle/*.ASM
+
+# TESTING FOLDER
+tests/
