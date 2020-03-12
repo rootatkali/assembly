@@ -8,4 +8,5 @@
 TDCONFIG.TD
 
 # MOODLE TASKS
-# moodle/
+moodle/
+!moodle/*.ASM
