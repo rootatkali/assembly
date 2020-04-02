@@ -13,3 +13,6 @@ moodle/
 
 # TESTING FOLDER
 tests/
+
+# PROJECT
+project/
