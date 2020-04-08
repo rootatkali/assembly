@@ -1,4 +1,4 @@
-@TASM %1
-@TLINK %1
-@PAUSE
-@TD %1
+@CLS
+TASM %1
+TLINK %1
+%1

@@ -7,7 +7,7 @@ DATASEG
   msgW db 'W Pressed$'
   msgS db 'S Pressed$'
   msgD db 'D Pressed$'
-  msgE db 'ESC Pressed, terminating.$'
+  msgE db 'ESC Pressed, terminating...$'
   nLne db 10,13,'$'
 
 CODESEG

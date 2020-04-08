@@ -25,12 +25,7 @@ start:
     cmp al,10b ; Is new?
     je waitForPress ; No - back up
     in al,60h ; Get key
-    
-    cmp al,[last]
-    je waitForPress
-    
-    mov [last],al
-    
+
     cmp al,81h
     je released
     in al,60h
