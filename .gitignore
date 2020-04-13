@@ -15,4 +15,5 @@ moodle/
 tests/
 
 # PROJECT
-project/
+project/*.BAT
+project/*.TXT
