@@ -1,0 +1,5 @@
+#!/bin/bash
+
+#Line counting script
+cloc --force-lang=Assembly --by-file-by-lang --md PROJ.ASM info.asm win.asm lose.asm ctrl.asm draw.asm game.asm > linecount.md
+nano linecount.md

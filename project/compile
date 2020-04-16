@@ -1,0 +1,2 @@
+#!/bin/bash
+dosbox -c "cd project" -c "cls" -c "tasm PROJ" -c "tlink PROJ" -c "@pause > NUL" -c "exit" > /dev/null

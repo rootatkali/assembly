@@ -9,6 +9,14 @@ DATASEG
   include "win.asm" ; win.asm has the text for the winner screen - msgWin
   include "lose.asm" ; lose.asm has the text for the loser screen - msgLose
   
+  ; Define messages for color legend
+  msgLegend1 db 'Color - Mines$'
+  msgLegend2 db 'Blue - 1$'
+  msgLegend3 db 'Green - 2$'
+  msgLegend4 db 'Yellow - 3$'
+  msgLegend5 db 'Megenta - 4$'
+  msgLegend6 db 'Red - FLAG$'
+  
   colors db 08,07,01,02,14,05,04 ; Color codes for square drawing (codes taken from [board]:
   ; Code | Color
   ;    0 | Dark Gray 08
@@ -56,7 +64,7 @@ start: ; Program head
   call textMode ; Clear screen
   mov dx,offset msgInfo ; Info and instructions message - info.asm
   mov ah,09h ; Print string code
-  int 21h ; DOS Interrupt
+  int 21h ; DOS Function Dispatcher
 
 keyInputStart: ; Wait for input of keys: ESC/ENTER
   mov ah,01h ; Get KB status
@@ -78,7 +86,68 @@ gameInit: ; Game initialization
   call graphicsMode ; Go to graphical mode
   call initBoard ; Initialize board arrays
   
-  ;; TODO: Type color legend on side
+  ; The following code sequence moves the cursor to the right part of the screen,
+  ; and prints a line of text. This is achieved using interrupts 10-2 and 21-9.
+  ; Note: In graphics mode, the text area is 40x25 instead of 80x25.
+  mov ah,02h ; Code for mov cursor
+  xor bh,bh ; BH = 0 Monitor No. 1
+  mov dl,26 ; Row 27
+  mov dh,3 ; Column 4
+  int 10h ; BIOS Video Services
+  
+  mov ah,09h ; Print string
+  mov dx,offset msgLegend1 ; Load string
+  int 21h ; DOS Function Dispatcher
+  
+  mov ah,02h ; Code for mov cursor
+  xor bh,bh ; BH = 0 Monitor No. 1
+  mov dl,26 ; Row 27
+  mov dh,4 ; Column 5
+  int 10h ; BIOS Video Services
+  
+  mov ah,09h ; Print string
+  mov dx,offset msgLegend2 ; Load string
+  int 21h ; DOS Function Dispatcher
+  
+  mov ah,02h ; Code for mov cursor
+  xor bh,bh ; BH = 0 Monitor No. 1
+  mov dl,26 ; Row 27
+  mov dh,5 ; Column 6
+  int 10h ; BIOS Video Services
+  
+  mov ah,09h ; Print string
+  mov dx,offset msgLegend3 ; Load string
+  int 21h ; DOS Function Dispatcher
+  
+  mov ah,02h ; Code for mov cursor
+  xor bh,bh ; BH = 0 Monitor No. 1
+  mov dl,26 ; Row 27
+  mov dh,6 ; Column 7
+  int 10h ; BIOS Video Services
+  
+  mov ah,09h ; Print string
+  mov dx,offset msgLegend4 ; Load string
+  int 21h ; DOS Function Dispatcher
+  
+  mov ah,02h ; Code for mov cursor
+  xor bh,bh ; BH = 0 Monitor No. 1
+  mov dl,26 ; Row 27
+  mov dh,7 ; Column 8
+  int 10h ; BIOS Video Services
+  
+  mov ah,09h ; Print string
+  mov dx,offset msgLegend5 ; Load string
+  int 21h ; DOS Function Dispatcher
+  
+  mov ah,02h ; Code for mov cursor
+  xor bh,bh ; BH = 0 Monitor No. 1
+  mov dl,26 ; Row 27
+  mov dh,8 ; Column 9
+  int 10h ; BIOS Video Services
+  
+  mov ah,09h ; Print string
+  mov dx,offset msgLegend6 ; Load string
+  int 21h ; DOS Function Dispatcher
   
   ; Get amount of available flags = amount of mines
   mov bx,offset mines ; Load [mines] to bx
@@ -128,7 +197,7 @@ mainGameLoop:
   call textMode ; Go to text mode
   mov dx,offset msgWin ; Winner message - win.asm
   mov ah,09h ; Code for printing String
-  int 21h ; DOS Interrupt
+  int 21h ; DOS Function Dispatcher
   jmp keyInputStart ; Wait for key input
   
 mouseKbLoop: ; Wait for either mouse or keyboard input
@@ -198,7 +267,7 @@ testForMine:
   call textMode ; Go to text mode
   mov dx,offset msgLose ; Loser message - lose.asm
   mov ah,09h ; Code for printing String
-  int 21h ; DOS Interrupt
+  int 21h ; DOS Function Dispatcher
   jmp keyInputStart ; Wait for key input
 
 tryOpen:
@@ -274,6 +343,6 @@ remFlag: ; Delete flag
 exit: ; Game termination code
   call textMode ; Go back to text mode
   mov ax,4C00h ; Flush memory and terminate with exit code 0
-  int 21h ; DOS Interrupt
+  int 21h ; DOS Function Dispatcher
 
 END start
